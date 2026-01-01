@@ -10,3 +10,4 @@
 ✓ Ready in 2.6s
  GET /create-workout 200 in 1768ms (compile: 1492ms, render: 276ms)
  GET /create-workout 200 in 177ms (compile: 76ms, render: 101ms)
+ GET /create-workout 200 in 1996ms (compile: 1082ms, render: 915ms)
