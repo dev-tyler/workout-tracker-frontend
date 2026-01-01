@@ -15,6 +15,7 @@ describe('AddExercise Page', () => {
     expect(screen.getByLabelText('Area')).toBeInTheDocument();
     expect(screen.getByLabelText('Type')).toBeInTheDocument();
     expect(screen.getByLabelText('Muscles Worked')).toBeInTheDocument();
+    expect(screen.getByLabelText('Equipment Needed')).toBeInTheDocument();
     expect(screen.getByLabelText('Video Link (Optional)')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /add exercise/i })).toBeInTheDocument();
   });
@@ -38,6 +39,10 @@ describe('AddExercise Page', () => {
     fireEvent.change(musclesInput, { target: { value: 'Pecs' } });
     expect(musclesInput.value).toBe('Pecs');
 
+    const equipmentInput = screen.getByLabelText('Equipment Needed') as HTMLInputElement;
+    fireEvent.change(equipmentInput, { target: { value: 'Barbell' } });
+    expect(equipmentInput.value).toBe('Barbell');
+
     const linkInput = screen.getByLabelText('Video Link (Optional)') as HTMLInputElement;
     fireEvent.change(linkInput, { target: { value: 'https://example.com' } });
     expect(linkInput.value).toBe('https://example.com');
@@ -51,6 +56,7 @@ describe('AddExercise Page', () => {
     fireEvent.change(screen.getByLabelText('Area'), { target: { value: 'legs' } });
     fireEvent.change(screen.getByLabelText('Type'), { target: { value: 'compound' } });
     fireEvent.change(screen.getByLabelText('Muscles Worked'), { target: { value: 'Quads, Glutes' } });
+    fireEvent.change(screen.getByLabelText('Equipment Needed'), { target: { value: 'Squat Rack' } });
     fireEvent.change(screen.getByLabelText('Video Link (Optional)'), { target: { value: 'https://squat.com' } });
 
     fireEvent.click(screen.getByRole('button', { name: /add exercise/i }));
@@ -60,6 +66,7 @@ describe('AddExercise Page', () => {
       area: 'legs',
       type: 'compound',
       muscles: 'Quads, Glutes',
+      equipment: 'Squat Rack',
       link: 'https://squat.com'
     }, null, 2));
 

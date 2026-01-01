@@ -15,3 +15,4 @@ https://nextjs.org/telemetry
 ✓ Ready in 1416ms
 ○ Compiling /add-exercise ...
  GET /add-exercise 200 in 5.0s (compile: 4.7s, render: 339ms)
+ GET /add-exercise 200 in 1296ms (compile: 556ms, render: 739ms)

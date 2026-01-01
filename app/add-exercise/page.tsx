@@ -8,6 +8,7 @@ export default function AddExercise() {
     area: 'push',
     type: 'compound',
     muscles: '',
+    equipment: '',
     link: '',
   });
 
@@ -93,6 +94,20 @@ export default function AddExercise() {
                 className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1"
                 placeholder="e.g. Chest, Triceps"
                 value={formData.muscles}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="equipment" className="block text-sm font-medium text-gray-700">
+                Equipment Needed
+              </label>
+              <input
+                id="equipment"
+                name="equipment"
+                type="text"
+                className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1"
+                placeholder="e.g. Barbell, Dumbbells"
+                value={formData.equipment}
                 onChange={handleChange}
               />
             </div>
