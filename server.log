@@ -1,0 +1,12 @@
+
+> workout-tracker-frontend@0.1.0 dev
+> next dev
+
+▲ Next.js 16.1.1 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.2:3000
+
+✓ Starting...
+✓ Ready in 2.6s
+ GET /create-workout 200 in 1768ms (compile: 1492ms, render: 276ms)
+ GET /create-workout 200 in 177ms (compile: 76ms, render: 101ms)
