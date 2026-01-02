@@ -15,7 +15,10 @@ export default async function WorkoutDetail({ params }: Props) {
     notFound();
   }
 
-  const formattedDate = new Date(workout.date).toLocaleDateString(undefined, {
+  // Use hydration-safe date formatting (e.g., UTC) or just a simple string
+  // To match client side formatting and avoid mismatch if we were hydrating this (though it's a server component)
+  const formattedDate = new Date(workout.date).toLocaleDateString('en-US', {
+    timeZone: 'UTC',
     weekday: 'long',
     year: 'numeric',
     month: 'long',
@@ -24,7 +27,7 @@ export default async function WorkoutDetail({ params }: Props) {
 
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-black p-8 font-sans">
-      <main className="max-w-3xl mx-auto">
+      <main className="w-full px-4">
         <div className="mb-8">
             <Link href="/" className="text-blue-600 hover:underline mb-4 inline-block">&larr; Back to Workouts</Link>
             <h1 className="text-4xl font-bold capitalize text-zinc-900 dark:text-zinc-100">{workout.area} Workout</h1>

@@ -51,17 +51,32 @@ describe('Home Page', () => {
     expect(screen.getAllByText('legs Workout', { selector: 'h3' })[0]).toBeInTheDocument();
   });
 
-  it('renders the history list', () => {
+  it('excludes latest workouts from history by default', () => {
     render(<Home />);
     expect(screen.getByText('History')).toBeInTheDocument();
-    // There are 4 mock workouts
-    const workoutLinks = screen.getAllByRole('link');
-    // 1 for create new, 3 for latest, 4 for history list = 8 links total
-    // However, latest and history point to same IDs, so let's check content.
-    // The history section should list all 4 workouts.
+
+    // Latest workouts (Push ID 1, Pull ID 2, Legs ID 3) should NOT be in history
+    // History should only contain the older Push workout (ID 4)
+    // We can check by date: 10/1/2023 is ID 4.
+    // ID 1 (10/25), ID 2 (10/26), ID 3 (10/27) are latest.
+
+    // Note: Our mock data has 4 workouts. 1 Push, 1 Pull, 1 Legs, 1 Old Push.
+    // So Latest = ID 1 (Push), ID 2 (Pull), ID 3 (Legs).
+    // History should only show ID 4.
+
+    // We can check dates rendered in history section.
+    // But getAllByText might find them in Latest too.
+    // We need to scope to the History section.
+    // Since we don't have easy section scopes without test-ids, let's count occurrences.
+
+    // "10/25/2023" (Latest Push) -> Should appear ONCE (in Latest)
+    // "10/01/2023" (Old Push) -> Should appear ONCE (in History)
+
+    expect(screen.getAllByText('10/25/2023')).toHaveLength(1);
+    expect(screen.getAllByText('10/1/2023')).toHaveLength(1);
   });
 
-  it('filters workouts by date', () => {
+  it('includes latest workouts in history when date filter is active', () => {
     render(<Home />);
 
     const startDateInput = screen.getByLabelText('Start Date');
@@ -70,13 +85,14 @@ describe('Home Page', () => {
     fireEvent.change(startDateInput, { target: { value: '2023-10-26' } });
     fireEvent.change(endDateInput, { target: { value: '2023-10-27' } });
 
-    // Should show pull (26th) and legs (27th), but not push (25th) or push (1st)
-    // Note: The "Latest Workouts" section is NOT filtered by date range, only the History section is.
-    // Let's check the history section content.
+    // Should show pull (26th) and legs (27th).
+    // These ARE the latest workouts, but since filter is active, they SHOULD appear in history.
 
-    // We can check if specific dates are visible in the history list.
-    // This is a bit tricky with the current generic text.
-    // However, the component logic is straightforward.
+    // So "10/26/2023" should appear TWICE (Latest Pull + History Pull)
+    expect(screen.getAllByText('10/26/2023')).toHaveLength(2);
+
+    // "10/25/2023" (Push) is outside range, so only ONCE (Latest Push)
+    expect(screen.getAllByText('10/25/2023')).toHaveLength(1);
   });
 
   it('renders create workout button', () => {

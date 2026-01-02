@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { workouts } from '../data/workouts';
 import { WorkoutCard } from '../components/WorkoutCard';
 import { DateRangeFilter } from '../components/DateRangeFilter';
-import { Workout } from '../types';
 
 export default function Home() {
   const [startDate, setStartDate] = useState('');
@@ -23,12 +22,16 @@ export default function Home() {
   const latestPull = getLatestWorkout('pull');
   const latestLegs = getLatestWorkout('legs');
 
+  // IDs of the latest workouts to exclude from history unless filtered
+  const latestIds = [latestPush?.id, latestPull?.id, latestLegs?.id].filter(Boolean) as string[];
+
   // Filter workouts based on date range
   const filteredWorkouts = sortedWorkouts.filter((workout) => {
     const workoutDate = new Date(workout.date);
     const start = startDate ? new Date(startDate) : null;
     const end = endDate ? new Date(endDate) : null;
 
+    // Date Range Logic
     if (start && workoutDate < start) return false;
     if (end) {
         // Adjust end date to include the full day
@@ -36,12 +39,25 @@ export default function Home() {
         endOfDay.setHours(23, 59, 59, 999);
         if (workoutDate > endOfDay) return false;
     }
+
+    // History Exclusion Logic
+    // "The history doesn't need to contain the most recent workouts, unless they are in the specified filtered date range"
+    // Interpretation: If NO date filter is active, exclude latestIds.
+    // If date filter IS active, show everything that matches the date.
+    const isDateFilterActive = !!(startDate || endDate);
+
+    if (!isDateFilterActive) {
+        if (latestIds.includes(workout.id)) {
+            return false;
+        }
+    }
+
     return true;
   });
 
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-black p-8 font-sans">
-      <main className="max-w-4xl mx-auto space-y-12">
+      <main className="w-full px-4 space-y-12">
 
         {/* Header Section */}
         <div className="flex justify-between items-center">
@@ -91,7 +107,7 @@ export default function Home() {
                 <WorkoutCard key={workout.id} workout={workout} />
               ))
             ) : (
-              <p className="text-zinc-500 dark:text-zinc-400">No workouts found for the selected date range.</p>
+              <p className="text-zinc-500 dark:text-zinc-400">No workouts found.</p>
             )}
           </div>
         </section>
