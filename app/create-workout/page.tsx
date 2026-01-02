@@ -208,6 +208,7 @@ export default function CreateWorkout() {
                                   type="number"
                                   className={styles.input}
                                   value={set.weight}
+                                  onKeyDown={(e) => ["e", "E", "+", "-"].includes(e.key) && e.preventDefault()}
                                   onChange={(e) =>
                                     updateSet(
                                       we.id,
@@ -224,6 +225,7 @@ export default function CreateWorkout() {
                                   type="number"
                                   className={styles.input}
                                   value={set.reps}
+                                  onKeyDown={(e) => ["e", "E", "+", "-"].includes(e.key) && e.preventDefault()}
                                   onChange={(e) =>
                                     updateSet(
                                       we.id,

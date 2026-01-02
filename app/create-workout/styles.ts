@@ -14,6 +14,6 @@ export const styles = {
   table: "min-w-full divide-y divide-gray-200",
   th: "px-3 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider",
   td: "px-3 py-2 whitespace-nowrap",
-  input: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md",
+  input: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md text-gray-900",
   checkbox: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded",
 };
