@@ -95,10 +95,14 @@ describe('Home Page', () => {
     expect(screen.getAllByText('10/25/2023')).toHaveLength(1);
   });
 
-  it('renders create workout button', () => {
+  it('renders create workout button and add exercise button', () => {
       render(<Home />);
       const createBtn = screen.getByText('Create New Workout');
       expect(createBtn).toBeInTheDocument();
-      expect(createBtn).toHaveAttribute('href', '/add-exercise');
+      expect(createBtn).toHaveAttribute('href', '/create-workout');
+
+      const addExerciseBtn = screen.getByText('Add Exercise');
+      expect(addExerciseBtn).toBeInTheDocument();
+      expect(addExerciseBtn).toHaveAttribute('href', '/add-exercise');
   });
 });

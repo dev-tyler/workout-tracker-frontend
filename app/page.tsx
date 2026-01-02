@@ -62,9 +62,14 @@ export default function Home() {
         {/* Header Section */}
         <div className="flex justify-between items-center">
           <h1 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100">My Workouts</h1>
-          <Link href="/add-exercise" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors">
-            Create New Workout
-          </Link>
+          <div className="flex gap-4">
+            <Link href="/add-exercise" className="bg-zinc-200 hover:bg-zinc-300 text-zinc-900 px-4 py-2 rounded-md transition-colors dark:bg-zinc-800 dark:hover:bg-zinc-700 dark:text-zinc-100">
+              Add Exercise
+            </Link>
+            <Link href="/create-workout" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors">
+              Create New Workout
+            </Link>
+          </div>
         </div>
 
         {/* Latest Workouts Section */}
