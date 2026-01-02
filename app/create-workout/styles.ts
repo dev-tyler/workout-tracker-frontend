@@ -1,0 +1,24 @@
+export const styles = {
+  container: "min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8",
+  wrapper: "max-w-3xl w-full mx-auto space-y-8",
+  heading: "mt-6 text-center text-3xl font-extrabold text-gray-900",
+  section: "bg-white shadow rounded-lg p-6 space-y-6",
+  sectionTitle: "text-lg leading-6 font-medium text-gray-900",
+  label: "block text-sm font-medium text-gray-900",
+  select:
+    "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md",
+  buttonPrimary:
+    "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
+  buttonSecondary:
+    "inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
+  exerciseCard: "border border-gray-200 rounded-md p-4 space-y-4",
+  exerciseHeader: "flex justify-between items-center",
+  exerciseTitle: "text-md font-bold text-gray-900",
+  table: "min-w-full divide-y divide-gray-200",
+  th: "px-3 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider",
+  td: "px-3 py-2 whitespace-nowrap",
+  input:
+    "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md text-gray-900",
+  checkbox:
+    "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded",
+};
